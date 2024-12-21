@@ -25,6 +25,13 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/homepage-admin', [MainAdminController::class, 'index'])->name('dashboard.admin');
 
+Route::get('/loginadmin', [MainAdminController::class, 'loginindex'])->name('login.admin');
+Route::get('/admin/katalog', [MainAdminController::class, 'katalogAdmin'])->name('katalog.admin');
+Route::post('/katalog-store', [MainAdminController::class, 'storeKatalogAdmin'])->name('katalog.store');
+Route::get('/katalog/edit/{id}', [MainAdminController::class, 'editKatalogAdmin'])->name('katalog.edit');
+Route::post('/katalog/update/{id}', [MainAdminController::class, 'updateKatalogAdmin'])->name('katalog.update');
+Route::delete('/katalog/delete/{id}', [MainAdminController::class, 'deleteKatalogAdmin'])->name('katalog.delete');
+Route::put('/katalog/update/{id}', [MainAdminController::class, 'updateKatalog'])->name('katalog.update');
 
 
 // Route::get('/dashboard', function () {
