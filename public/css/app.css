@@ -1511,3 +1511,11 @@ select {
   }
 }
 
+.katalog-image {
+    width: 100%; /* Sesuai dengan lebar container */
+    height: auto; /* Agar proporsi tetap */
+    max-height: 200px; /* Batas maksimal tinggi gambar */
+    object-fit: cover; /* Crop gambar jika tidak proporsional */
+    border-radius: 8px; /* Opsional: Tambahkan efek melengkung */
+}
+

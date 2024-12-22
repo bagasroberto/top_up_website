@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Katalog;
+use App\Models\Order;
 
 class MainAdminController extends Controller
 {
@@ -22,6 +23,20 @@ class MainAdminController extends Controller
         $katalogs = Katalog::all();
 
         return view('admin.page.katalog', compact('katalogs'));
+
+    }
+
+    public function pembelianAdmin()
+    {
+        $order = Order::leftJoin('katalogs','orders.katalog_id','=', 'katalogs.id')
+        ->leftJoin('users','users.id', '=', 'orders.user_id')
+        ->select('users.id', 'users.email', 'users.name', 'katalogs.nama_katalog', 'katalogs.harga_katalog', 'orders.*')
+        ->get();
+
+        // dd($order);
+
+
+        return view('admin.page.pembelian', compact('order'));
 
     }
 
@@ -47,6 +62,7 @@ class MainAdminController extends Controller
         return redirect()->back()->with('success', 'Katalog berhasil ditambahkan!');
     }
 
+
     public function editKatalogAdmin($id)
     {
         $katalog = Katalog::findOrFail($id);
@@ -68,9 +84,13 @@ class MainAdminController extends Controller
         $katalog->deskripsi_katalog = $request->deskripsi_katalog;
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama
-            if (file_exists(public_path($katalog->image))) {
-                unlink(public_path($katalog->image));
+            // Hapus gambar lama jika ada
+            if (!empty($katalog->image) && file_exists(public_path($katalog->image))) {
+                try {
+                    unlink(public_path($katalog->image));
+                } catch (\Exception $e) {
+                    return back()->withErrors(['image' => 'Gagal menghapus gambar lama: ' . $e->getMessage()]);
+                }
             }
 
             // Upload gambar baru
@@ -81,8 +101,9 @@ class MainAdminController extends Controller
 
         $katalog->save();
 
-        return redirect()->route('katalogAdmin')->with('success', 'Katalog berhasil diperbarui.');
+        return redirect()->route('katalog.admin')->with('success', 'Katalog berhasil diperbarui.');
     }
+
 
 
     // Controller Method for Delete

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Katalog extends Model
+class Order extends Model
 {
     use HasFactory;
-    protected $table = 'katalogs';
+    protected $table = 'orders';
     protected $guarded = ['id'];
 
-    public function orders()
+    public function katalog()
     {
-        return $this->hasMany(Order::class, 'game_id', 'id');
+        return $this->belongsTo(Katalog::class, 'game_id', 'id');
     }
 }

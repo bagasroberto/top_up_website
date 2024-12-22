@@ -80,6 +80,11 @@
                     <span class="sub-item">Katalog</span>
                   </a>
                 </li>
+                <li>
+                  <a href="{{ route('pembelian.admin') }}">
+                    <span class="sub-item">Pembelian</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>

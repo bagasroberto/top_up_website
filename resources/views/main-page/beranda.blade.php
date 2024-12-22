@@ -1,168 +1,114 @@
 @extends('layouts.main')
-@section('content')
-         <!-- ***** Banner Start ***** -->
-          <div class="main-banner">
-            <div class="row">
-              <div class="col-lg-7">
-                <div class="header-text">
-                  <h6>Selamat Data {{ Auth()->user()->name }}, di Awan Store</h6>
-                  <h4><em>TOP UP Diamond</em> Paling Terpercaya</h4>
-                  <div class="main-button">
-                    <a href="browse.html">Cari Kebutuhan Anda</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- ***** Banner End ***** -->
 
-          <!-- ***** Most Popular Start ***** -->
-          <div class="most-popular">
-            <div class="row">
-              <div class="col-lg-12">
+@section('content')
+
+    <!-- ***** Banner Start ***** -->
+    <div class="main-banner">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="header-text">
+                    <h6>Selamat Data {{ Auth()->user()->name }}, di Awan Store</h6>
+                    <h4><em>TOP UP Diamond</em> Paling Terpercaya</h4>
+                    <div class="main-button">
+                        <a href="{{ route('produk') }}">Cari Kebutuhan Anda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="most-popular">
+
+        <div class="row">
+            <div class="col">
+                <div id="opsi">
+                    <h5>Cari Diamond untuk Game Apa?</h5>
+                <p>Pilih kategori game untuk mencari diamond:</p>
+                <button id="mobileCategory" class="btn btn-primary">Mobile</button>
+                <button id="pcCategory" class="btn btn-primary">PC</button>
+                {{-- <button id="skipCategory" class="btn btn-secondary">Lewati</button> --}}
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Opsi untuk memilih kategori game -->
+
+
+    <!-- ***** Banner End ***** -->
+
+    <!-- ***** Most Popular Start ***** -->
+    <div class="most-popular">
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="heading-section">
-                  <h4><em>Most Popular</em> Right Now</h4>
+                    <h4><em>Most Popular</em> Right Now</h4>
                 </div>
                 <div class="row">
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/popular-01.jpg" alt="">
-                      <h4>Fortnite<br><span>Sandbox</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i> 4.8</li>
-                        <li><i class="fa fa-download"></i> 2.3M</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/popular-02.jpg" alt="">
-                      <h4>PubG<br><span>Battle S</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i> 4.8</li>
-                        <li><i class="fa fa-download"></i> 2.3M</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/popular-03.jpg" alt="">
-                      <h4>Dota2<br><span>Steam-X</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i> 4.8</li>
-                        <li><i class="fa fa-download"></i> 2.3M</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/popular-04.jpg" alt="">
-                      <h4>CS-GO<br><span>Legendary</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i> 4.8</li>
-                        <li><i class="fa fa-download"></i> 2.3M</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="item">
-                      <div class="row">
-                        <div class="col-lg-6 col-sm-6">
-                          <div class="item inner-item">
-                            <img src="assets/images/popular-05.jpg" alt="">
-                            <h4>Mini Craft<br><span>Legendary</span></h4>
-                            <ul>
-                              <li><i class="fa fa-star"></i> 4.8</li>
-                              <li><i class="fa fa-download"></i> 2.3M</li>
-                            </ul>
-                          </div>
+                    @foreach ($katalogs as $katalog)
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="item">
+                                <img src="{{ asset($katalog->image) }}" alt="{{ $katalog->nama_katalog }}">
+                                <h4>{{ $katalog->nama_katalog }}<br><span>{{ $katalog->deskripsi_katalog }}</span></h4>
+                                <ul>
+                                    <li><i class="fa fa-star"></i> {{ $katalog->rating ?? '4.8' }}</li>
+                                    <li><i class="fa fa-download"></i> {{ $katalog->downloads ?? '2.3M' }}</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col-lg-6 col-sm-6">
-                          <div class="item">
-                            <img src="assets/images/popular-06.jpg" alt="">
-                            <h4>Eagles Fly<br><span>Matrix Games</span></h4>
-                            <ul>
-                              <li><i class="fa fa-star"></i> 4.8</li>
-                              <li><i class="fa fa-download"></i> 2.3M</li>
-                            </ul>
-                          </div>
+                    @endforeach
+                    <div class="col-lg-12">
+                        <div class="main-button">
+                            <a href="{{ route('produk') }}">Lihat Lebih Banyak</a>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/popular-07.jpg" alt="">
-                      <h4>Warface<br><span>Max 3D</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i> 4.8</li>
-                        <li><i class="fa fa-download"></i> 2.3M</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/popular-08.jpg" alt="">
-                      <h4>Warcraft<br><span>Legend</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i> 4.8</li>
-                        <li><i class="fa fa-download"></i> 2.3M</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="main-button">
-                      <a href="browse.html">Discover Popular</a>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <!-- ***** Most Popular End ***** -->
+        </div>
+    </div>
 
-          <!-- ***** Gaming Library Start ***** -->
-          <div class="gaming-library">
-            <div class="col-lg-12">
-              <div class="heading-section">
-                <h4><em>Your Gaming</em> Library</h4>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>Dota 2</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>24/08/2036</span></li>
-                  <li><h4>Hours Played</h4><span>634 H 22 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div></li>
-                </ul>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="assets/images/game-02.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>Fortnite</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>22/06/2036</span></li>
-                  <li><h4>Hours Played</h4><span>740 H 52 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button"><a href="#">Donwload</a></div></li>
-                </ul>
-              </div>
-              <div class="item last-item">
-                <ul>
-                  <li><img src="assets/images/game-03.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>CS-GO</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>21/04/2036</span></li>
-                  <li><h4>Hours Played</h4><span>892 H 14 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div></li>
-                </ul>
-              </div>
+    <!-- ***** Most Popular End ***** -->
+
+    <!-- ***** Gaming Library Start ***** -->
+    <div class="gaming-library">
+        <div class="col-lg-12">
+            <div class="heading-section">
+                <h4><em>Riwayat</em> Pembelian</h4>
             </div>
+
+            @foreach($orders as $order)
+                <div class="item">
+                    <ul>
+                        <li><img src="{{ asset($order->image) }}" alt="" class="templatemo-item"></li>
+                        <li><h4>{{ $order->nama_katalog }}</h4><span>Game</span></li>
+                        <li><h4>Date Purchased</h4><span>{{ $order->order_date->format('d/m/Y') }}</span></li>
+                        <li><h4>Diamonds Purchased</h4><span>{{ $order->diamond_amount }}</span></li>
+                        <li><h4>Status</h4><span>{{ $order->status }}</span></li>
+                    </ul>
+                </div>
+            @endforeach
+
             <div class="col-lg-12">
-              <div class="main-button">
-                <a href="profile.html">View Your Library</a>
-              </div>
+                <div class="main-button">
+                    <a href="{{ route('pesanan.index') }}">Lihat Lebih Banyak</a>
+                </div>
             </div>
-          </div>
-          <!-- ***** Gaming Library End ***** -->
-          @endsection
+        </div>
+    </div>
+    <!-- ***** Gaming Library End ***** -->
+
+@endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Script -->
+<script>
+    $(document).ready(function(){
+        $('#mobileCategory').on('click', function(){
+            window.location.href = '{{ route('produk.search', ['category' => 'mobile']) }}';
+        });
+
+    });
+
+</script>
+

@@ -5,7 +5,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img src="assets/images/awan.png" style="margin-top: 12px;" alt="">
+                        <img src="{{ asset('assets/images/awan.png') }}" style="margin-top: 12px;" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
@@ -19,14 +19,14 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="{{ route('dashboard') }}" class="active">Beranda</a></li>
-                        <li><a href="browse.html">Produk</a></li>
-                        <li><a href="details.html">Status Pembayaran</a></li>
-                        <li><a href="streams.html">Bantuan</a></li>
-                        <li><a href="profile.html">Profil</li>
+                        <li><a href="{{ route('produk') }}">Produk</a></li>
+                        <li><a href="{{ route('pesanan.index') }}">Status Pesanan</a></li>
+                        <li><a href="#">Bantuan</a></li>
+                        {{-- <li><a href="profile.html">Profil</li> --}}
                         <li>
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('logout') }}" style="margin-top:10px;">
                                 @csrf
-                                <button class="btn btn-danger" type="submit"><i class="fas fa-sign-out-alt"></i></button>
+                                <button class="btn btn-sm btn-danger" type="submit">Logout</button>
                             </form>
                         </li>
                     </ul>
